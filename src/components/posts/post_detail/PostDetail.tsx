@@ -1,10 +1,19 @@
-import { useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { useCallback, useEffect, useState } from "react";
+import { Link, useLocation, useParams } from "react-router-dom";
 import { getPostDetailData } from "../../../lib/fetchers/fetchUtils";
 import { IPostDetail } from "../../../lib/const/interfaces";
 
 const PostDetail = () => {
   const { postId } = useParams();
+  const location = useLocation();
+  const commentsRef = useCallback(
+    (node: HTMLDivElement | null) => {
+      if (node !== null && location.hash) {
+        node.scrollIntoView({ behavior: "smooth" });
+      } else window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+    },
+    [location]
+  );
   const [postDetailData, setPostDetailData] = useState<IPostDetail | null>(
     null
   );
@@ -26,14 +35,16 @@ const PostDetail = () => {
           </h3>
           <p>{postDetailData.text}</p>
           <br />
-          <h3>Comments:</h3>
-          {postDetailData.comments.map((comment, i) => (
-            <div key={i}>
-              <h5>{comment.name}</h5>
-              <h6>{comment.email}</h6>
-              <p>{comment.body}</p>
-            </div>
-          ))}
+          <div id="comments" ref={commentsRef}>
+            <h3>Comments:</h3>
+            {postDetailData.comments.map((comment, i) => (
+              <div key={i}>
+                <h5>{comment.name}</h5>
+                <h6>{comment.email}</h6>
+                <p>{comment.body}</p>
+              </div>
+            ))}
+          </div>
         </>
       )}
     </>

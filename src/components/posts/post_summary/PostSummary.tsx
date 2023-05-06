@@ -14,7 +14,9 @@ const PostSummary = ({
       <h3>{author}</h3>
       <p>{text}</p>
       <Link to={`/posts/${id}`}>READ MORE</Link>
-      <p>comments: {comment_num}</p>
+      <p>
+        comments: <Link to={`/posts/${id}#comments`}>{comment_num}</Link>
+      </p>
     </div>
   );
 };
