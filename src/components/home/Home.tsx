@@ -1,5 +1,11 @@
+import PostSummaryList from "../posts/post_summary/PostSummaryList";
+
 const Home = () => {
-  return <div>HOME COMP</div>;
+  return (
+    <main>
+      <PostSummaryList />
+    </main>
+  );
 };
 
 export default Home;
