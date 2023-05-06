@@ -26,7 +26,7 @@ async function fetchById(option: string, id_name: string, id: number) {
   }
 }
 
-export async function getAllPostSummaryData(): Promise<IPostSummary[]> {
+export async function fetchAllPostSummaryData(): Promise<IPostSummary[]> {
   try {
     const [posts, users, comments]: [
       IPosts[],
@@ -57,7 +57,7 @@ export async function getAllPostSummaryData(): Promise<IPostSummary[]> {
   }
 }
 
-export async function getPostDetailData(id: number): Promise<IPostDetail> {
+export async function fetchPostDetailData(id: number): Promise<IPostDetail> {
   try {
     const [post] = await fetchById(CALL_OPTION.posts, "id", id);
     const [[user], comments] = await Promise.all([

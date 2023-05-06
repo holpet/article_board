@@ -1,4 +1,4 @@
-import { getAllPostSummaryData } from "../../../lib/fetchers/fetchUtils";
+import { fetchAllPostSummaryData } from "../../../lib/fetchers/fetchUtils";
 import PostSummary from "./PostSummary";
 import { useQuery } from "@tanstack/react-query";
 
@@ -6,7 +6,7 @@ const PostSummaryList = () => {
   // query all post summary data
   const postSummaryQuery = useQuery({
     queryKey: ["posts"],
-    queryFn: () => getAllPostSummaryData(),
+    queryFn: () => fetchAllPostSummaryData(),
   });
   if (postSummaryQuery.isLoading) return <h1>IS LOADING!</h1>;
   if (postSummaryQuery.isError) return <h1>404 not found</h1>;

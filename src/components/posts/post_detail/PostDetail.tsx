@@ -1,6 +1,6 @@
 import { useCallback } from "react";
 import { Link, useLocation, useParams } from "react-router-dom";
-import { getPostDetailData } from "../../../lib/fetchers/fetchUtils";
+import { fetchPostDetailData } from "../../../lib/fetchers/fetchUtils";
 import { useQuery } from "@tanstack/react-query";
 
 const PostDetail = () => {
@@ -20,7 +20,7 @@ const PostDetail = () => {
   // query post detail data
   const postDetailQuery = useQuery({
     queryKey: ["posts", postId],
-    queryFn: () => getPostDetailData(Number(postId)),
+    queryFn: () => fetchPostDetailData(Number(postId)),
   });
   if (postDetailQuery.isLoading) return <h1>IS LOADING!</h1>;
   if (postDetailQuery.isError) return <h1>404 not found</h1>;
