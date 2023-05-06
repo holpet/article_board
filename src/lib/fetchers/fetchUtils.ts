@@ -10,8 +10,7 @@ async function fetchAll(option: string) {
     });
     return data;
   } catch (error) {
-    console.log(error);
-    return null;
+    return new Error(`Failed to fetch data for ${option}.`);
   }
 }
 
@@ -23,52 +22,59 @@ async function fetchById(option: string, id_name: string, id: number) {
     });
     return data;
   } catch (error) {
-    console.log(error);
-    return null;
+    return new Error(`Failed to fetch data for ${option}.`);
   }
 }
 
 export async function getAllPostSummaryData(): Promise<IPostSummary[]> {
-  const [posts, users, comments]: [
-    IPosts[],
-    IUsers[],
-    IComments[]
-  ] = await Promise.all([
-    fetchAll(CALL_OPTION.posts),
-    fetchAll(CALL_OPTION.users),
-    fetchAll(CALL_OPTION.comments),
-  ]);
-  const postSummaryData: IPostSummary[] = Array(posts.length);
-  posts.map((data) => {
-    postSummaryData.push({
-      id: data.id,
-      title: data.title,
-      author: users.filter((user) => {
-        return user.id === data.userId;
-      })[0].name,
-      text: data.body,
-      comment_num: comments.filter((comment) => {
-        return comment.postId === data.id;
-      }).length,
+  try {
+    const [posts, users, comments]: [
+      IPosts[],
+      IUsers[],
+      IComments[]
+    ] = await Promise.all([
+      fetchAll(CALL_OPTION.posts),
+      fetchAll(CALL_OPTION.users),
+      fetchAll(CALL_OPTION.comments),
+    ]);
+    const postSummaryData: IPostSummary[] = Array(posts.length);
+    posts.map((data) => {
+      postSummaryData.push({
+        id: data.id,
+        title: data.title,
+        author: users.filter((user) => {
+          return user.id === data.userId;
+        })[0].name,
+        text: data.body,
+        comment_num: comments.filter((comment) => {
+          return comment.postId === data.id;
+        }).length,
+      });
     });
-  });
-  return postSummaryData;
+    return postSummaryData;
+  } catch (error) {
+    throw new Error("Failed to create allPostSummaryData object.");
+  }
 }
 
 export async function getPostDetailData(id: number): Promise<IPostDetail> {
-  const [post] = await fetchById(CALL_OPTION.posts, "id", id);
-  const [[user], comments] = await Promise.all([
-    fetchById(CALL_OPTION.users, "id", post.userId),
-    fetchById(CALL_OPTION.comments, "postId", id),
-  ]);
-  const postDetailData = {
-    title: post.title,
-    text: post.text,
-    author: {
-      name: user.name,
-      username: user.username,
-    },
-    comments: comments,
-  };
-  return postDetailData;
+  try {
+    const [post] = await fetchById(CALL_OPTION.posts, "id", id);
+    const [[user], comments] = await Promise.all([
+      fetchById(CALL_OPTION.users, "id", post.userId),
+      fetchById(CALL_OPTION.comments, "postId", id),
+    ]);
+    const postDetailData = {
+      title: post.title,
+      text: post.text,
+      author: {
+        name: user.name,
+        username: user.username,
+      },
+      comments: comments,
+    };
+    return postDetailData;
+  } catch (error) {
+    throw new Error("Failed to create postDetailData object.");
+  }
 }
