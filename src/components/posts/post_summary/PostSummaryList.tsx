@@ -5,7 +5,7 @@ import { useQuery } from "@tanstack/react-query";
 const PostSummaryList = () => {
   // query all post summary data
   const postSummaryQuery = useQuery({
-    queryKey: ["post_summary"],
+    queryKey: ["posts"],
     queryFn: () => getAllPostSummaryData(),
   });
   if (postSummaryQuery.isLoading) return <h1>IS LOADING!</h1>;

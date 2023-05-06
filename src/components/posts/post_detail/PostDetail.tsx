@@ -19,7 +19,7 @@ const PostDetail = () => {
 
   // query post detail data
   const postDetailQuery = useQuery({
-    queryKey: ["post_detail"],
+    queryKey: ["posts", postId],
     queryFn: () => getPostDetailData(Number(postId)),
   });
   if (postDetailQuery.isLoading) return <h1>IS LOADING!</h1>;
