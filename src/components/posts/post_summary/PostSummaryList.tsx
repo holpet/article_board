@@ -12,7 +12,7 @@ const PostSummaryList = () => {
   if (postSummaryQuery.isError) return <h1>404 not found</h1>;
 
   return (
-    <>
+    <div className="summary-list">
       {postSummaryQuery.data.map((postSummary, i) => (
         <PostSummary
           key={i}
@@ -23,7 +23,7 @@ const PostSummaryList = () => {
           comment_num={postSummary.comment_num}
         />
       ))}
-    </>
+    </div>
   );
 };
 

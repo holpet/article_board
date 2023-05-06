@@ -26,7 +26,7 @@ const PostDetail = () => {
   if (postDetailQuery.isError) return <h1>404 not found</h1>;
 
   return (
-    <>
+    <div className="detail">
       <Link to="/">Go back</Link>
       <>
         <h1>{postDetailQuery.data.title}</h1>
@@ -47,7 +47,7 @@ const PostDetail = () => {
           ))}
         </div>
       </>
-    </>
+    </div>
   );
 };
 

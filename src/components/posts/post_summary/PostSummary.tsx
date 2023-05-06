@@ -9,7 +9,7 @@ const PostSummary = ({
   comment_num,
 }: IPostSummary) => {
   return (
-    <div>
+    <div className="summary">
       <h1>{title}</h1>
       <h3>{author}</h3>
       <p>{text}</p>
