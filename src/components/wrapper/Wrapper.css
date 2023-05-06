@@ -1,0 +1,35 @@
+.wrapper-logo-img {
+  position: absolute;
+  top: 0;
+}
+
+.wrapper {
+  position: relative;
+  background-image: url("../../assets/pattern3.png"),
+    linear-gradient(to bottom right, var(--green), var(--gray));
+  color: var(--green);
+  text-align: right;
+  min-height: 8rem;
+  border-radius: 20px;
+  overflow: hidden;
+  border-bottom: var(--green) solid 1rem;
+}
+
+.wrapper .logo {
+  position: absolute;
+  top: -6.8rem;
+  right: 0;
+  font-size: 15rem;
+  overflow: hidden;
+}
+
+.wrapper .logo-img {
+  position: absolute;
+}
+.wrapper .logo-img:first-child {
+  position: absolute;
+  top: -0.8rem;
+  right: 0;
+  color: white;
+  opacity: 0.7;
+}

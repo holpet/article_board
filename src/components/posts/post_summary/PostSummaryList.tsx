@@ -1,4 +1,6 @@
+import "./PostSummaryList.css";
 import { fetchAllPostSummaryData } from "../../../lib/fetchers/fetchUtils";
+import Wrapper from "../../wrapper/Wrapper";
 import PostSummary from "./PostSummary";
 import { useQuery } from "@tanstack/react-query";
 
@@ -12,18 +14,20 @@ const PostSummaryList = () => {
   if (postSummaryQuery.isError) return <h1>404 not found</h1>;
 
   return (
-    <div className="summary-list">
-      {postSummaryQuery.data.map((postSummary, i) => (
-        <PostSummary
-          key={i}
-          id={postSummary.id}
-          title={postSummary.title}
-          text={postSummary.text}
-          author={postSummary.author}
-          comment_num={postSummary.comment_num}
-        />
-      ))}
-    </div>
+    <Wrapper>
+      <div className="summary-list">
+        {postSummaryQuery.data.map((postSummary, i) => (
+          <PostSummary
+            key={i}
+            id={postSummary.id}
+            title={postSummary.title}
+            text={postSummary.text}
+            author={postSummary.author}
+            comment_num={postSummary.comment_num}
+          />
+        ))}
+      </div>
+    </Wrapper>
   );
 };
 

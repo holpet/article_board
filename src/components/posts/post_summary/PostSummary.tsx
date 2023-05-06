@@ -1,5 +1,7 @@
-import { Link } from "react-router-dom";
+import "./PostSummary.css";
 import { IPostSummary } from "../../../lib/const/interfaces";
+import Icon from "@mdi/react";
+import { mdiClover } from "@mdi/js";
 
 const PostSummary = ({
   id,
@@ -10,13 +12,23 @@ const PostSummary = ({
 }: IPostSummary) => {
   return (
     <div className="summary">
-      <h1>{title}</h1>
-      <h3>{author}</h3>
-      <p>{text}</p>
-      <Link to={`/posts/${id}`}>READ MORE</Link>
-      <p>
-        comments: <Link to={`/posts/${id}#comments`}>{comment_num}</Link>
-      </p>
+      <h1 className="line-clamp clamp-1">{title}</h1>
+      <h3>
+        <Icon path={mdiClover} size={1} className="clover" />
+        &nbsp;{author}
+      </h3>
+      <p className="line-clamp clamp-2">{text}</p>
+      <div className="links">
+        <button
+          className="button-summary"
+          onClick={() => (location.href = `/posts/${id}`)}
+        >
+          READ MORE
+        </button>
+        <p>
+          comments: <a href={`/posts/${id}#comments`}>{comment_num}</a>
+        </p>
+      </div>
     </div>
   );
 };

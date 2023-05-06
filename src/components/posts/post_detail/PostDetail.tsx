@@ -2,6 +2,7 @@ import { useCallback } from "react";
 import { Link, useLocation, useParams } from "react-router-dom";
 import { fetchPostDetailData } from "../../../lib/fetchers/fetchUtils";
 import { useQuery } from "@tanstack/react-query";
+import Wrapper from "../../wrapper/Wrapper";
 
 const PostDetail = () => {
   const { postId } = useParams();
@@ -26,28 +27,30 @@ const PostDetail = () => {
   if (postDetailQuery.isError) return <h1>404 not found</h1>;
 
   return (
-    <div className="detail">
-      <Link to="/">Go back</Link>
-      <>
-        <h1>{postDetailQuery.data.title}</h1>
-        <h3>
-          {postDetailQuery.data.author.name} (
-          {postDetailQuery.data.author.username})
-        </h3>
-        <p>{postDetailQuery.data.text}</p>
-        <br />
-        <div id="comments" ref={commentsRef}>
-          <h3>Comments:</h3>
-          {postDetailQuery.data.comments.map((comment, i) => (
-            <div key={i}>
-              <h5>{comment.name}</h5>
-              <h6>{comment.email}</h6>
-              <p>{comment.body}</p>
-            </div>
-          ))}
-        </div>
-      </>
-    </div>
+    <Wrapper>
+      <div className="detail">
+        <Link to="/">Go back</Link>
+        <>
+          <h1>{postDetailQuery.data.title}</h1>
+          <h3>
+            {postDetailQuery.data.author.name} (
+            {postDetailQuery.data.author.username})
+          </h3>
+          <p>{postDetailQuery.data.text}</p>
+          <br />
+          <div id="comments" ref={commentsRef}>
+            <h3>Comments:</h3>
+            {postDetailQuery.data.comments.map((comment, i) => (
+              <div key={i}>
+                <h5>{comment.name}</h5>
+                <h6>{comment.email}</h6>
+                <p>{comment.body}</p>
+              </div>
+            ))}
+          </div>
+        </>
+      </div>
+    </Wrapper>
   );
 };
 

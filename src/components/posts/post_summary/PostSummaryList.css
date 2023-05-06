@@ -1,0 +1,12 @@
+.summary-list {
+  margin-top: 1rem;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+}
+
+@media (min-width: 55rem) {
+  .summary-list {
+    grid-template-columns: 1fr 1fr;
+  }
+}
