@@ -1,15 +1,16 @@
 import "../Posts.css";
 import "./PostDetail.css";
 import { useCallback } from "react";
-import { useLocation, useParams } from "react-router-dom";
+import { useLocation, useParams, useNavigate } from "react-router-dom";
 import { fetchPostDetailData } from "../../../lib/fetchers/fetchUtils";
 import { useQuery } from "@tanstack/react-query";
 import Wrapper from "../../wrapper/Wrapper";
 import Icon from "@mdi/react";
-import { mdiClover } from "@mdi/js";
+import { mdiClover, mdiArrowUUpLeftBold } from "@mdi/js";
 
 const PostDetail = () => {
   const { postId } = useParams();
+  const navigate = useNavigate();
 
   // (if requested) scroll to comments section
   const loc = useLocation();
@@ -32,7 +33,7 @@ const PostDetail = () => {
 
   return (
     <Wrapper>
-      <button className="button-detail" onClick={() => (location.href = "/")}>
+      <button className="button-detail" onClick={() => navigate("/")}>
         Go back
       </button>
       <div className="detail content">
@@ -60,6 +61,7 @@ const PostDetail = () => {
           ))}
         </div>
       </div>
+      <Icon path={mdiArrowUUpLeftBold} size={3} />
     </Wrapper>
   );
 };
