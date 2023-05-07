@@ -4,7 +4,7 @@
   --green: #28a925;
   --gray: #494b49;
 
-  color: rgba(0, 0, 0, 0.6);
+  color: var(--gray);
   background-color: var(--green);
   background-repeat: repeat;
   background-image: url("./assets/pattern3.png"),
@@ -38,8 +38,14 @@ body {
 }
 
 h1 {
-  font-size: clamp(1rem, 0.5rem + 5vw, 2rem);
+  font-size: clamp(0.7rem, 0.3rem + 5vw, 2rem);
   margin: 0;
+  display: inline-block;
+  vertical-align: top;
+}
+
+h3 {
+  margin: 0.5rem 0;
 }
 
 button {
@@ -50,6 +56,7 @@ button {
   background-color: var(--green);
   cursor: pointer;
   transition: background-color 0.25s;
+  text-transform: uppercase;
 }
 button:hover {
   background-color: var(--gray);
@@ -58,6 +65,10 @@ button.button-summary {
   display: flex;
   align-items: start;
   padding-top: 1.5rem;
+}
+button.button-detail {
+  padding: 1rem;
+  margin: 2rem 0;
 }
 
 a {

@@ -1,0 +1,21 @@
+.content {
+  background-color: rgba(255, 255, 255, 0.9);
+  background-image: url("../../assets/pattern3.png"),
+    linear-gradient(to bottom right, white, white);
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+  max-width: 100%;
+}
+
+.title {
+  display: flex;
+}
+
+.content h3 {
+  display: flex;
+  align-items: center;
+}
+.content h3 .clover {
+  color: var(--green);
+}

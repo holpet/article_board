@@ -1,0 +1,41 @@
+.detail {
+  padding: 2rem;
+  position: relative;
+}
+
+.detail h1 {
+  margin-bottom: 0.3rem;
+}
+h1::first-letter,
+h5::first-letter,
+p:not(.comments)::first-letter {
+  text-transform: uppercase;
+}
+
+#comments h3 {
+  color: var(--green);
+  font-size: 1.5rem;
+}
+
+#comments .comment {
+  background-color: rgba(255, 255, 255, 0.5);
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  border-radius: 20px;
+  margin-bottom: 1rem;
+  padding: 1rem;
+}
+
+#comments h5 {
+  padding: 0;
+  margin-top: 1rem;
+}
+
+.content-heart {
+  position: absolute;
+  font-size: 12rem;
+  color: var(--green);
+  top: -30px;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+}

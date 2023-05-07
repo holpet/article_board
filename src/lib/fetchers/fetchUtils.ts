@@ -66,7 +66,7 @@ export async function fetchPostDetailData(id: number): Promise<IPostDetail> {
     ]);
     const postDetailData = {
       title: post.title,
-      text: post.text,
+      text: post.body,
       author: {
         name: user.name,
         username: user.username,

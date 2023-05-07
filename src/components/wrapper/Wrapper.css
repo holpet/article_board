@@ -1,3 +1,10 @@
+.wrapper-heart {
+  position: absolute;
+  font-size: 50px;
+  top: 0;
+  transform: translateX(180px);
+}
+
 .wrapper-logo-img {
   position: absolute;
   top: 0;

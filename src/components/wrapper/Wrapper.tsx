@@ -9,12 +9,13 @@ interface ILayoutProps {
 const Wrapper = ({ children }: ILayoutProps) => {
   return (
     <>
+      <div className="wrapper-heart">♥</div>
       <div className="wrapper-logo-img">
         <Icon path={mdiClover} size={10} className="clover" />
       </div>
       <div className="wrapper">
         <div className="logo">
-          Gre
+          Stil
           <div className="logo-img">
             <Icon path={mdiClover} size={6} className="clover" />
           </div>

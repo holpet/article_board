@@ -1,29 +1,12 @@
-.summary {
-  background-color: rgba(255, 255, 255, 0.9);
-  background-image: url("../../../assets/pattern3.png"),
-    linear-gradient(to bottom right, white, white);
-  padding: 0.5rem 1rem;
-  border-radius: 20px;
-  box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
-  max-width: 100%;
-}
-
-.links {
-  height: 50%;
-}
-
-.summary h3 {
-  display: flex;
-  align-items: center;
-}
-.summary h3 .clover {
-  color: var(--green);
+.summary h1 {
+  padding-top: 0.8rem;
 }
 
 .summary .links {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  height: 50%;
 }
 
 .line-clamp {
