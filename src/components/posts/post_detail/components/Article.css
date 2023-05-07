@@ -1,0 +1,23 @@
+.detail h1 {
+  margin-bottom: 0.3rem;
+}
+h1::first-letter,
+h5::first-letter,
+p:not(.comments)::first-letter {
+  text-transform: uppercase;
+}
+@media (max-width: 30rem) {
+  .detail h3 {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+  }
+}
+.detail h3 span {
+  display: flex;
+  align-items: center;
+}
+.detail h3 span i {
+  font-weight: 500;
+  text-decoration: underline;
+}
