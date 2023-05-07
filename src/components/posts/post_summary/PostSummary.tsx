@@ -5,7 +5,7 @@ import Icon from "@mdi/react";
 import { mdiClover } from "@mdi/js";
 import { useEffect } from "react";
 import { capitalizeText } from "../../../lib/helpers/formatterUtils";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const PostSummary = ({
   id,
@@ -36,7 +36,10 @@ const PostSummary = ({
           READ MORE
         </button>
         <small className="comments">
-          comments: <Link to={`/posts/${id}#comments`}>{comment_num}</Link>
+          comments:{" "}
+          <button onClick={() => navigate(`/posts/${id}#comments`)}>
+            {comment_num}
+          </button>
         </small>
       </div>
     </article>

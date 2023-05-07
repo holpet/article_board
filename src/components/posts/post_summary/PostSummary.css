@@ -15,7 +15,10 @@
 }
 .comments {
   font-weight: bold;
-  padding-top: 0.8rem;
+  padding: 1rem 0;
+}
+.comments button {
+  padding: 0.2rem 0.4rem;
 }
 
 .line-clamp {

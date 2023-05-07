@@ -31,7 +31,8 @@ const PostDetail = () => {
     queryFn: () => fetchPostDetailData(Number(postId)),
   });
   if (postDetailQuery.isLoading) return <h1>IS LOADING!</h1>;
-  if (postDetailQuery.isError) return <h1>404 not found</h1>;
+  if (postDetailQuery.isError)
+    return <h1>Sorry! An error occured. Please, try again later.</h1>;
 
   return (
     <>
@@ -40,7 +41,7 @@ const PostDetail = () => {
         <Wrapper>
           {/* BUTTON & TAG SECTION */}
           <div className="button-wrapper">
-            <button className="button-detail" onClick={() => navigate("/")}>
+            <button className="button-detail" onClick={() => navigate(-1)}>
               <Icon path={mdiArrowLeftThin} size={1.5} />
             </button>
             <div>
@@ -57,8 +58,8 @@ const PostDetail = () => {
               </div>
               <h3>
                 <Icon path={mdiClover} size={1} className="clover" />
-                &nbsp;{postDetailQuery.data.author.name} (
-                {postDetailQuery.data.author.username})
+                &nbsp;{postDetailQuery.data.author.name}&nbsp;@
+                <span>{postDetailQuery.data.author.username}</span>
               </h3>
               <p>{postDetailQuery.data.text}</p>
             </article>
@@ -67,12 +68,19 @@ const PostDetail = () => {
           {/* COMMENT SECTION */}
           <section className="detail content">
             <div id="comments" ref={commentsRef}>
-              <h3>Comments:</h3>
+              <div className="comments-bg">
+                <h3>Comments</h3>
+              </div>
               {postDetailQuery.data.comments.map((comment, i) => (
                 <div key={i} className="comment">
-                  <h5>{comment.name}</h5>
-                  <h6>{comment.email}</h6>
-                  <p>{comment.body}</p>
+                  <div className="comment-icon">
+                    <Icon path={mdiClover} size={0.6} className="clover" />
+                  </div>
+                  <div className="comment-body">
+                    <h5>{comment.name}</h5>
+                    <h6>{comment.email}</h6>
+                    <p>{comment.body}</p>
+                  </div>
                 </div>
               ))}
             </div>
@@ -84,7 +92,7 @@ const PostDetail = () => {
                 window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
               }}
             >
-              <Icon path={mdiArrowUUpLeftBold} size={2} />
+              <Icon path={mdiArrowUUpLeftBold} size={1.5} />
             </button>
           </div>
         </Wrapper>

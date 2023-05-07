@@ -68,7 +68,7 @@ button {
   padding: 0.2rem 1rem;
   color: white;
   background-color: var(--green);
-  border: 2px solid var(--green);
+  border: 1px solid var(--green);
   cursor: pointer;
   transition: all 0.25s;
   text-transform: uppercase;
