@@ -3,6 +3,7 @@ import { fetchAllPostSummaryData } from "../../../lib/fetchers/fetchUtils";
 import Wrapper from "../../wrapper/Wrapper";
 import PostSummary from "./PostSummary";
 import { useQuery } from "@tanstack/react-query";
+import { default as spinner } from "../../../assets/spinner_loader2.svg";
 
 const PostSummaryList = () => {
   // query all post summary data
@@ -10,7 +11,7 @@ const PostSummaryList = () => {
     queryKey: ["posts"],
     queryFn: () => fetchAllPostSummaryData(),
   });
-  if (postSummaryQuery.isLoading) return <h1>IS LOADING!</h1>;
+  if (postSummaryQuery.isLoading) return <img src={spinner} alt="spinner" />;
   if (postSummaryQuery.isError) return <h1>404 not found</h1>;
 
   return (

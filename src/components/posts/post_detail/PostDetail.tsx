@@ -9,6 +9,7 @@ import Icon from "@mdi/react";
 import { mdiClover, mdiArrowUUpLeftBold, mdiArrowLeftThin } from "@mdi/js";
 import CssBaseline from "@mui/material/CssBaseline";
 import Container from "@mui/material/Container";
+import { default as spinner } from "../../../assets/spinner_loader2.svg";
 
 const PostDetail = () => {
   const { postId } = useParams();
@@ -30,7 +31,7 @@ const PostDetail = () => {
     queryKey: ["posts", postId],
     queryFn: () => fetchPostDetailData(Number(postId)),
   });
-  if (postDetailQuery.isLoading) return <h1>IS LOADING!</h1>;
+  if (postDetailQuery.isLoading) return <img src={spinner} alt="spinner" />;
   if (postDetailQuery.isError)
     return <h1>Sorry! An error occured. Please, try again later.</h1>;
 
