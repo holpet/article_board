@@ -6,7 +6,12 @@ import { fetchPostDetailData } from "../../../lib/fetchers/fetchUtils";
 import { useQuery } from "@tanstack/react-query";
 import Wrapper from "../../wrapper/Wrapper";
 import Icon from "@mdi/react";
-import { mdiClover, mdiArrowUUpLeftBold, mdiArrowLeftThin } from "@mdi/js";
+import {
+  mdiClover,
+  mdiArrowUUpLeftBold,
+  mdiArrowLeftThin,
+  mdiCardsHeart,
+} from "@mdi/js";
 import CssBaseline from "@mui/material/CssBaseline";
 import Container from "@mui/material/Container";
 import { default as spinner } from "../../../assets/spinner_loader2.svg";
@@ -52,7 +57,9 @@ const PostDetail = () => {
           </div>
           {/* ARTICLE SECTION */}
           <section className="detail content">
-            <div className="heart">♥</div>
+            <div className="heart">
+              <Icon path={mdiCardsHeart} size={5} />
+            </div>
             <article>
               <div className="title">
                 <h1>{postDetailQuery.data.title}</h1>
