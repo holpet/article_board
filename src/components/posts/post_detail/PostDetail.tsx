@@ -65,9 +65,13 @@ const PostDetail = () => {
                 <h1>{postDetailQuery.data.title}</h1>
               </div>
               <h3>
-                <Icon path={mdiClover} size={1} className="clover" />
-                &nbsp;{postDetailQuery.data.author.name}&nbsp;@
-                <span>{postDetailQuery.data.author.username}</span>
+                <span>
+                  <Icon path={mdiClover} size={1} className="clover" />
+                  &nbsp;{postDetailQuery.data.author.name}&nbsp;
+                </span>
+                <span>
+                  @<i>{postDetailQuery.data.author.username}</i>
+                </span>
               </h3>
               <p>{postDetailQuery.data.text}</p>
             </article>
