@@ -21,10 +21,8 @@ const PostSummary = ({
   }, []);
 
   return (
-    <div className="summary content">
-      <div className="title">
-        <h1 className="line-clamp clamp-1">{title}</h1>
-      </div>
+    <article className="summary content">
+      <h1 className="line-clamp clamp-1">{title}</h1>
       <h3>
         <Icon path={mdiClover} size={1} className="clover" />
         &nbsp;{author}
@@ -37,11 +35,11 @@ const PostSummary = ({
         >
           READ MORE
         </button>
-        <p className="comments">
+        <small className="comments">
           comments: <Link to={`/posts/${id}#comments`}>{comment_num}</Link>
-        </p>
+        </small>
       </div>
-    </div>
+    </article>
   );
 };
 

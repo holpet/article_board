@@ -1,11 +1,8 @@
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  font-weight: 400;
   --green: #28a925;
   --gray: #494b49;
 
-  color: var(--gray);
-  background-color: var(--green);
+  background-color: var(--green) !important;
   background-repeat: repeat;
   background-image: url("./assets/pattern3.png"),
     linear-gradient(to bottom right, var(--green), var(--gray));
@@ -15,6 +12,11 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
+
+  --container-outer: clamp(1rem, 0.5rem + 5vw, 5rem);
+  --container-outer-mobile: 0;
+  --container-inner: clamp(0.4rem, 0.2rem + 5vw, 2rem);
+  --container-inner-mobile: 1rem 0;
 }
 
 html,
@@ -22,19 +24,31 @@ body {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  min-height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
+  min-height: 100vh;
+  background-color: transparent !important;
+  color: var(--gray) !important;
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif !important;
+  font-weight: 400 !important;
+  overflow-x: hidden !important;
 }
 
 #root {
   border: var(--green) solid 1rem;
   background-color: rgba(255, 255, 255, 0.5);
   border-radius: 30px;
-  max-width: 1000px;
-  margin: clamp(1rem, 0.5rem + 5vw, 5rem);
-  padding: clamp(0.4rem, 0.2rem + 5vw, 2rem);
+  margin: var(--container-outer);
+  padding: var(--container-inner);
+  overflow: hidden;
+}
+
+@media (max-width: 40rem) {
+  #root {
+    margin: var(--container-outer-mobile);
+    padding: var(--container-inner-mobile);
+  }
 }
 
 h1 {
@@ -49,26 +63,19 @@ h3 {
 }
 
 button {
-  border-radius: 8px;
+  border-radius: 10px;
   border: none;
   padding: 0.2rem 1rem;
   color: white;
   background-color: var(--green);
+  border: 2px solid var(--green);
   cursor: pointer;
-  transition: background-color 0.25s;
+  transition: all 0.25s;
   text-transform: uppercase;
 }
 button:hover {
   background-color: var(--gray);
-}
-button.button-summary {
-  display: flex;
-  align-items: start;
-  padding-top: 1.5rem;
-}
-button.button-detail {
-  padding: 1rem;
-  margin: 2rem 0;
+  border-color: var(--gray);
 }
 
 a {
@@ -101,7 +108,6 @@ a:hover {
 
 *::-webkit-scrollbar-track {
   background: var(--gray);
-  border-radius: 5px;
 }
 
 *::-webkit-scrollbar-thumb {

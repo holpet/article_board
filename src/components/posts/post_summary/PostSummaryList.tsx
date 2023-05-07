@@ -15,7 +15,7 @@ const PostSummaryList = () => {
 
   return (
     <Wrapper>
-      <div className="summary-list">
+      <section className="summary-list">
         {postSummaryQuery.data.map((postSummary, i) => (
           <PostSummary
             key={i}
@@ -26,7 +26,7 @@ const PostSummaryList = () => {
             comment_num={postSummary.comment_num}
           />
         ))}
-      </div>
+      </section>
     </Wrapper>
   );
 };
