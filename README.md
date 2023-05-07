@@ -1,4 +1,4 @@
-# SINGLE-PAGE BLOG APP
+# BLOG APP
 
 This is a solution for a Junior FE challenge implementing React.
 
