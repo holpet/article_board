@@ -10,6 +10,7 @@ import { mdiClover, mdiArrowUUpLeftBold, mdiArrowLeftThin } from "@mdi/js";
 import CssBaseline from "@mui/material/CssBaseline";
 import Container from "@mui/material/Container";
 import { default as spinner } from "../../../assets/spinner_loader2.svg";
+import Error from "../../error/Error";
 
 const PostDetail = () => {
   const { postId } = useParams();
@@ -32,8 +33,7 @@ const PostDetail = () => {
     queryFn: () => fetchPostDetailData(Number(postId)),
   });
   if (postDetailQuery.isLoading) return <img src={spinner} alt="spinner" />;
-  if (postDetailQuery.isError)
-    return <h1>Sorry! An error occured. Please, try again later.</h1>;
+  if (postDetailQuery.isError) return <Error type="fetch" />;
 
   return (
     <>
