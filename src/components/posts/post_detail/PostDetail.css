@@ -3,6 +3,45 @@
   position: relative;
 }
 
+/* ------------ BUTTONS ---------- */
+.button-wrapper {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  z-index: 5;
+}
+.button-wrapper div {
+  display: flex;
+}
+button.button-detail {
+  padding: 0 0.6rem;
+  margin: 1.5rem 0;
+}
+.button-detail:not(.button-detail:first-of-type) {
+  margin-left: 0.5rem !important;
+}
+.button-tag {
+  background-color: rgba(255, 255, 255, 0.2);
+  cursor: default;
+  border-color: var(--green);
+  padding: 0 1rem;
+}
+.button-tag:hover {
+  background-color: inherit;
+  border-color: var(--green);
+}
+
+@media (max-width: 40rem) {
+  .button-tag {
+    visibility: hidden;
+  }
+  .button-detail {
+    margin: 1rem 0 !important;
+    padding: 0 !important;
+  }
+}
+
+/* ------------ ARTICLE ---------- */
 .detail h1 {
   margin-bottom: 0.3rem;
 }
@@ -11,6 +50,8 @@ h5::first-letter,
 p:not(.comments)::first-letter {
   text-transform: uppercase;
 }
+
+/* ------------ COMMENTS ---------- */
 
 #comments h3 {
   color: var(--green);
@@ -30,12 +71,37 @@ p:not(.comments)::first-letter {
   margin-top: 1rem;
 }
 
-.content-heart {
+/* ------------ GFX ELEMS ---------- */
+
+.heart {
   position: absolute;
-  font-size: 12rem;
+  font-size: 10rem;
   color: var(--green);
   top: -30px;
   left: 50%;
   transform: translate(-50%, -50%);
   pointer-events: none;
+  z-index: 0;
+}
+
+.up-arrow {
+  display: flex;
+  justify-content: center;
+  margin-top: var(--container-inner);
+}
+.up-arrow button {
+  padding: 0;
+  background-color: transparent;
+  border: none;
+}
+.up-arrow button:hover {
+  background-color: transparent;
+}
+.up-arrow svg {
+  color: var(--gray);
+  transition: all 0.15s;
+}
+.up-arrow svg:hover {
+  color: var(--green);
+  cursor: pointer;
 }

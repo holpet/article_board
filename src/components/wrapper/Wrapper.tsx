@@ -17,7 +17,7 @@ const Wrapper = ({ children }: ILayoutProps) => {
         <div className="logo">
           Stil
           <div className="logo-img">
-            <Icon path={mdiClover} size={6} className="clover" />
+            <Icon path={mdiClover} size={5.5} className="clover" />
           </div>
         </div>
       </div>

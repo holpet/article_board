@@ -4,9 +4,18 @@
 
 .summary .links {
   display: flex;
-  flex-direction: row;
   justify-content: space-between;
   height: 50%;
+}
+
+.button-summary {
+  display: flex;
+  align-items: start;
+  padding-top: 1.5rem;
+}
+.comments {
+  font-weight: bold;
+  padding-top: 0.8rem;
 }
 
 .line-clamp {

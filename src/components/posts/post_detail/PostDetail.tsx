@@ -6,7 +6,9 @@ import { fetchPostDetailData } from "../../../lib/fetchers/fetchUtils";
 import { useQuery } from "@tanstack/react-query";
 import Wrapper from "../../wrapper/Wrapper";
 import Icon from "@mdi/react";
-import { mdiClover, mdiArrowUUpLeftBold } from "@mdi/js";
+import { mdiClover, mdiArrowUUpLeftBold, mdiArrowLeftThin } from "@mdi/js";
+import CssBaseline from "@mui/material/CssBaseline";
+import Container from "@mui/material/Container";
 
 const PostDetail = () => {
   const { postId } = useParams();
@@ -32,37 +34,62 @@ const PostDetail = () => {
   if (postDetailQuery.isError) return <h1>404 not found</h1>;
 
   return (
-    <Wrapper>
-      <button className="button-detail" onClick={() => navigate("/")}>
-        Go back
-      </button>
-      <div className="detail content">
-        <div className="content-heart">♥</div>
-        <div className="title">
-          <h1>{postDetailQuery.data.title}</h1>
-        </div>
-        <h3>
-          <Icon path={mdiClover} size={1} className="clover" />
-          &nbsp;{postDetailQuery.data.author.name} (
-          {postDetailQuery.data.author.username})
-        </h3>
-        <p>{postDetailQuery.data.text}</p>
-      </div>
-      <br />
-      <div className="detail content">
-        <div id="comments" ref={commentsRef}>
-          <h3>Comments:</h3>
-          {postDetailQuery.data.comments.map((comment, i) => (
-            <div key={i} className="comment">
-              <h5>{comment.name}</h5>
-              <h6>{comment.email}</h6>
-              <p>{comment.body}</p>
+    <>
+      <CssBaseline />
+      <Container maxWidth="md">
+        <Wrapper>
+          {/* BUTTON & TAG SECTION */}
+          <div className="button-wrapper">
+            <button className="button-detail" onClick={() => navigate("/")}>
+              <Icon path={mdiArrowLeftThin} size={1.5} />
+            </button>
+            <div>
+              <button className="button-detail button-tag">Tags 1</button>
+              <button className="button-detail button-tag">Tags 2</button>
             </div>
-          ))}
-        </div>
-      </div>
-      <Icon path={mdiArrowUUpLeftBold} size={3} />
-    </Wrapper>
+          </div>
+          {/* ARTICLE SECTION */}
+          <section className="detail content">
+            <div className="heart">♥</div>
+            <article>
+              <div className="title">
+                <h1>{postDetailQuery.data.title}</h1>
+              </div>
+              <h3>
+                <Icon path={mdiClover} size={1} className="clover" />
+                &nbsp;{postDetailQuery.data.author.name} (
+                {postDetailQuery.data.author.username})
+              </h3>
+              <p>{postDetailQuery.data.text}</p>
+            </article>
+          </section>
+          <br />
+          {/* COMMENT SECTION */}
+          <section className="detail content">
+            <div id="comments" ref={commentsRef}>
+              <h3>Comments:</h3>
+              {postDetailQuery.data.comments.map((comment, i) => (
+                <div key={i} className="comment">
+                  <h5>{comment.name}</h5>
+                  <h6>{comment.email}</h6>
+                  <p>{comment.body}</p>
+                </div>
+              ))}
+            </div>
+          </section>
+          {/* scroll back up */}
+          <div className="up-arrow">
+            <button
+              onClick={() => {
+                window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+              }}
+            >
+              <Icon path={mdiArrowUUpLeftBold} size={2} />
+            </button>
+          </div>
+        </Wrapper>
+      </Container>
+    </>
   );
 };
 

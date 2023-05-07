@@ -5,6 +5,13 @@
   transform: translateX(180px);
 }
 
+@media (max-width: 40rem) {
+  .wrapper-logo-img,
+  .wrapper-heart {
+    visibility: hidden;
+  }
+}
+
 .wrapper-logo-img {
   position: absolute;
   top: 0;
@@ -24,7 +31,7 @@
 
 .wrapper .logo {
   position: absolute;
-  top: -6.8rem;
+  top: -8rem;
   right: 0;
   font-size: 15rem;
   overflow: hidden;
@@ -35,7 +42,7 @@
 }
 .wrapper .logo-img:first-child {
   position: absolute;
-  top: -0.8rem;
+  top: -1.8rem;
   right: 0;
   color: white;
   opacity: 0.7;
