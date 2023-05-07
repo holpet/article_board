@@ -23,7 +23,7 @@ button.button-detail {
 .button-tag {
   background-color: rgba(255, 255, 255, 0.2);
   cursor: default;
-  border-color: var(--green);
+  border-color: white;
   padding: 0 1rem;
 }
 .button-tag:hover {
@@ -50,12 +50,35 @@ h5::first-letter,
 p:not(.comments)::first-letter {
   text-transform: uppercase;
 }
+.detail h3 span {
+  font-weight: 500;
+  text-decoration: underline;
+  font-style: italic;
+}
 
 /* ------------ COMMENTS ---------- */
 
-#comments h3 {
-  color: var(--green);
-  font-size: 1.5rem;
+#comments {
+  position: relative;
+  display: grid;
+  padding-top: 1.8rem;
+}
+
+#comments .comments-bg {
+  background-color: var(--gray);
+  height: 3.4rem;
+  border-radius: 20px;
+  top: 1rem;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  position: absolute;
+  z-index: 0;
+}
+#comments .comments-bg > h3 {
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 1.2rem;
+  z-index: 5;
+  margin: 0.4rem 1.7rem;
 }
 
 #comments .comment {
@@ -64,11 +87,43 @@ p:not(.comments)::first-letter {
   border-radius: 20px;
   margin-bottom: 1rem;
   padding: 1rem;
+  z-index: 5;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  column-gap: 0.8rem;
+}
+@media (max-width: 40rem) {
+  #comments .comment {
+    grid-template-columns: 1fr;
+  }
 }
 
-#comments h5 {
-  padding: 0;
+#comments .comment-icon {
   margin-top: 1rem;
+  width: 2rem;
+  height: 2rem;
+  background-color: var(--green);
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+}
+@media (max-width: 40rem) {
+  #comments .comment-icon {
+    margin-top: 0;
+  }
+}
+
+#comments .comment-body {
+  margin-top: 1rem;
+}
+#comments .comment-body > h5 {
+  padding: 0;
+  margin: 0;
+}
+#comments .comment-body > h6 {
+  margin: 0;
 }
 
 /* ------------ GFX ELEMS ---------- */
