@@ -1,7 +1,7 @@
 import { IPostDetail, IPostSummary } from "../const/interfaces";
+import { IComments, IPosts, IUsers } from "./const/interfaces";
 import client from "./config/axiosConfig";
 import { CALL_OPTION } from "./const/constants";
-import { IComments, IPosts, IUsers } from "./const/interfaces";
 
 async function fetchAll(option: string) {
   try {
@@ -10,7 +10,7 @@ async function fetchAll(option: string) {
     });
     return data;
   } catch (error) {
-    return new Error(`Failed to fetch data for ${option}.`);
+    throw new Error(`Failed to fetch data for ${option}.`);
   }
 }
 
@@ -22,7 +22,7 @@ async function fetchById(option: string, id_name: string, id: number) {
     });
     return data;
   } catch (error) {
-    return new Error(`Failed to fetch data for ${option}.`);
+    throw new Error(`Failed to fetch data for ${option}.`);
   }
 }
 
@@ -39,16 +39,16 @@ export async function fetchAllPostSummaryData(): Promise<IPostSummary[]> {
     ]);
     const postSummaryData: IPostSummary[] = Array(posts.length);
     posts.map((data) => {
+      const author = users.find((user) => user.id === data.userId)?.name || "";
+      const comment_num = comments.filter((comment) => {
+        return comment.postId === data.id;
+      }).length;
       postSummaryData.push({
         id: data.id,
         title: data.title,
-        author: users.filter((user) => {
-          return user.id === data.userId;
-        })[0].name,
+        author: author,
         text: data.body,
-        comment_num: comments.filter((comment) => {
-          return comment.postId === data.id;
-        }).length,
+        comment_num: comment_num,
       });
     });
     return postSummaryData;
@@ -64,7 +64,7 @@ export async function fetchPostDetailData(id: number): Promise<IPostDetail> {
       fetchById(CALL_OPTION.users, "id", post.userId),
       fetchById(CALL_OPTION.comments, "postId", id),
     ]);
-    const postDetailData = {
+    const postDetailData: IPostDetail = {
       title: post.title,
       text: post.body,
       author: {

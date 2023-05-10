@@ -16,7 +16,7 @@ const Comments = ({ comments }: ICommentsProps) => {
     (node: HTMLDivElement | null) => {
       if (node !== null && loc.hash) {
         node.scrollIntoView({ behavior: "smooth" });
-      } else window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+      }
     },
     [loc]
   );
