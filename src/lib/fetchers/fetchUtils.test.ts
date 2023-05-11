@@ -10,16 +10,17 @@ import {
   fetchPostDetailData,
 } from "./fetchUtils";
 import { CALL_OPTION } from "./const/constants";
-import { getServerWithFailedRes, server } from "../../__mocks__/mockServer";
 import {
   createMockObjError,
   mockCreatedData,
 } from "../../__mocks__/mockCreatedData";
+import { MockServer } from "../../__mocks__/mockServer";
 
-beforeAll(() => {
-  server.listen();
-  console.log("Server is listening.");
-});
+const Server = new MockServer();
+
+// initial mock server config
+const server = Server.employServer();
+beforeAll(() => server.listen());
 afterAll(() => server.close());
 afterEach(() => server.resetHandlers());
 
@@ -31,7 +32,7 @@ describe("fetchAll will call API through axios and return all available data tha
     });
   });
   it("should throw an error when call is unsuccessful", async () => {
-    getServerWithFailedRes(server);
+    Server.employServerFail();
     Object.keys(CALL_OPTION).forEach(async (option) => {
       await expect(fetchAll(option)).rejects.toThrow(
         new Error(createMockFetchError(option))
@@ -48,7 +49,7 @@ describe("fetchById will call API through axios and return available data using 
     });
   });
   it("should throw an error when call is unsuccessful", async () => {
-    getServerWithFailedRes(server);
+    Server.employServerFail();
     Object.keys(CALL_OPTION).forEach(async (option) => {
       await expect(fetchAll(option)).rejects.toThrow(
         new Error(createMockFetchError(option))
@@ -63,7 +64,7 @@ describe("fetchAllPostSummaryData will utilize fetchAll fn and create a new arra
     expect(data).toEqual(mockCreatedData.summary);
   });
   it("should throw an error when creating IPostSummary[] failed", async () => {
-    getServerWithFailedRes(server);
+    Server.employServerFail();
     await expect(fetchAllPostSummaryData()).rejects.toThrow(
       new Error(createMockObjError("summary"))
     );
@@ -73,11 +74,10 @@ describe("fetchAllPostSummaryData will utilize fetchAll fn and create a new arra
 describe("fetchPostDetailData will utilize fetchById fn and create a new object with received data", () => {
   it("should return a IPostDetail", async () => {
     const data = await fetchPostDetailData(1);
-    console.log(data);
     expect(data).toEqual(mockCreatedData.detail);
   });
   it("should throw an error when creating IPostDetail failed", async () => {
-    getServerWithFailedRes(server);
+    Server.employServerFail();
     await expect(fetchPostDetailData(1)).rejects.toThrow(
       new Error(createMockObjError("detail"))
     );
