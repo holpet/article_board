@@ -3,9 +3,9 @@ import { IComments, IPosts, IUsers } from "./const/interfaces";
 import client from "./config/axiosConfig";
 import { CALL_OPTION } from "./const/constants";
 
-async function fetchAll(option: string) {
+export async function fetchAll(option: string) {
   try {
-    let { data } = await client.get(option, {
+    const { data } = await client.get(option, {
       signal: AbortSignal.timeout(5000),
     });
     return data;
@@ -14,9 +14,9 @@ async function fetchAll(option: string) {
   }
 }
 
-async function fetchById(option: string, id_name: string, id: number) {
+export async function fetchById(option: string, id_name: string, id: number) {
   try {
-    let { data } = await client.get(option, {
+    const { data } = await client.get(option, {
       signal: AbortSignal.timeout(5000),
       params: { [id_name]: id },
     });
@@ -37,7 +37,7 @@ export async function fetchAllPostSummaryData(): Promise<IPostSummary[]> {
       fetchAll(CALL_OPTION.users),
       fetchAll(CALL_OPTION.comments),
     ]);
-    const postSummaryData: IPostSummary[] = Array(posts.length);
+    const postSummaryData: IPostSummary[] = [];
     posts.map((data) => {
       const author = users.find((user) => user.id === data.userId)?.name || "";
       const comment_num = comments.filter((comment) => {
